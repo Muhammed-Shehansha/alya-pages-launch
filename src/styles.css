@@ -1,0 +1,311 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap");
+
+:root {
+  font-family: "Montserrat", system-ui, sans-serif;
+  color: #3c3935;
+  background: #f7f2e9;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+}
+
+.launch-page {
+  position: relative;
+  min-height: 100svh;
+  width: 100%;
+  overflow: hidden;
+  background: #f7f2e9;
+  isolation: isolate;
+}
+
+.hero-art {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  display: block;
+}
+
+.hero-art img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(1.035);
+  filter: saturate(0.94);
+  transition: transform 2.2s cubic-bezier(.2,.7,.2,1);
+}
+
+.is-loaded .hero-art img {
+  transform: scale(1);
+}
+
+.soft-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 252, 246, 0.02) 0%,
+      rgba(255, 252, 246, 0.02) 45%,
+      rgba(50, 40, 28, 0.10) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.05) 0%,
+      rgba(255,255,255,0.00) 55%,
+      rgba(36,28,20,0.14) 100%
+    );
+}
+
+.launch-card {
+  position: absolute;
+  /* Keep the artwork's built-in Alya Pages lockup unobstructed on the left. */
+  left: clamp(34rem, 42vw, 54rem);
+  bottom: clamp(4.5rem, 10vh, 7rem);
+  width: min(470px, calc(100vw - 4rem));
+  padding: 2.25rem 2.4rem 2.1rem;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.62);
+  border-radius: 28px;
+  background: rgba(255, 251, 244, 0.72);
+  box-shadow:
+    0 22px 70px rgba(75, 58, 38, 0.13),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 1.45s ease 0.85s,
+    transform 1.45s cubic-bezier(.2,.7,.2,1) 0.85s;
+}
+
+.is-loaded .launch-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ornament {
+  display: block;
+  margin-bottom: 0.65rem;
+  color: #b8873c;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.eyebrow {
+  margin: 0 0 0.8rem;
+  color: #766e65;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+}
+
+h1 {
+  margin: 0;
+  color: #393632;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.8rem, 4vw, 4.2rem);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+}
+
+.description {
+  max-width: 340px;
+  margin: 1.15rem auto 0;
+  color: #716a62;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.25rem;
+  line-height: 1.35;
+}
+
+.rule {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  max-width: 190px;
+  margin: 1.35rem auto 1rem;
+}
+
+.rule span {
+  height: 1px;
+  flex: 1;
+  background: rgba(151, 119, 72, 0.36);
+}
+
+.rule i {
+  color: #b8873c;
+  font-size: 0.9rem;
+  font-style: normal;
+}
+
+.coming {
+  margin: 0;
+  color: #83786b;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.23em;
+  text-transform: uppercase;
+}
+
+.footer {
+  position: absolute;
+  right: clamp(1.5rem, 4vw, 4rem);
+  bottom: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: rgba(70, 62, 53, 0.68);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.footer span:first-child {
+  color: #b8873c;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 1100px) and (min-width: 701px) {
+  .hero-art img {
+    /* Scale from the left so the embedded Alya Pages lockup sits centrally. */
+    object-position: left center;
+    transform-origin: left center;
+    transform: scale(1.29);
+  }
+
+  .is-loaded .hero-art img {
+    transform: scale(1.25);
+  }
+
+  .launch-card {
+    left: 50%;
+    right: auto;
+    bottom: max(4rem, 15vh);
+    width: min(660px, 76vw);
+    padding: 3.2rem 3.7rem 3rem;
+    transform: translate(-50%, 22px);
+  }
+
+  .launch-card h1 {
+    font-size: clamp(3.7rem, 5.5vw, 4.35rem);
+  }
+
+  .launch-card .description {
+    max-width: 420px;
+    font-size: 1.5rem;
+  }
+
+  .is-loaded .launch-card {
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (max-width: 700px) {
+  body {
+    overflow: auto;
+  }
+
+  .launch-page {
+    min-height: 100svh;
+  }
+
+  .hero-art img {
+    object-position: center center;
+  }
+
+  .soft-vignette {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255,255,255,0.00) 42%,
+        rgba(255,251,244,0.16) 58%,
+        rgba(40,30,20,0.20) 100%
+      );
+  }
+
+  .launch-card {
+    left: 50%;
+    bottom: 4.8rem;
+    width: min(88vw, 390px);
+    padding: 1.5rem 1.25rem 1.35rem;
+    border-radius: 23px;
+    transform: translate(-50%, 22px);
+  }
+
+  .is-loaded .launch-card {
+    transform: translate(-50%, 0);
+  }
+
+  .ornament {
+    font-size: 1.5rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .eyebrow {
+    font-size: 0.5rem;
+    letter-spacing: 0.22em;
+  }
+
+  h1 {
+    font-size: clamp(2.35rem, 10vw, 3.15rem);
+  }
+
+  .description {
+    margin-top: 0.8rem;
+    font-size: 1.05rem;
+  }
+
+  .rule {
+    margin: 0.9rem auto 0.75rem;
+  }
+
+  .coming {
+    font-size: 0.48rem;
+    letter-spacing: 0.16em;
+  }
+
+  .footer {
+    right: 50%;
+    bottom: 1.3rem;
+    transform: translateX(50%);
+    white-space: nowrap;
+    font-size: 0.48rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-art img,
+  .launch-card {
+    transition: none;
+  }
+
+  .hero-art img {
+    transform: none;
+  }
+
+  .launch-card,
+  .is-loaded .launch-card {
+    opacity: 1;
+    transform: none;
+  }
+}
